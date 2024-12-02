@@ -9,7 +9,7 @@ class AppEnvTypes(Enum):
     test: str = "test"
 
 
-class BaseAppSettings:
+class BaseAppSettings(BaseSettings):
     app_env: AppEnvTypes = AppEnvTypes.dev
 
     class Config:

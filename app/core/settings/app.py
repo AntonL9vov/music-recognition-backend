@@ -1,6 +1,6 @@
 import logging
 import sys
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Tuple, Optional
 
 from loguru import logger
 from pydantic import PostgresDsn, SecretStr
@@ -18,11 +18,13 @@ class AppSettings(BaseAppSettings):
     title: str = "FastAPI example application"
     version: str = "0.0.0"
 
-    database_url: None = None
     max_connection_count: int = 10
     min_connection_count: int = 10
 
-    secret_key: None = None
+    LAST_FM_LOGIN: str
+    LAST_FM_PASSWORD: str
+    LAST_FM_API_KEY: str
+    LAST_FM_API_SECRET: str
 
     api_prefix: str = "/api"
 

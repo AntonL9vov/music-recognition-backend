@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 
 from app.core.settings.app import AppSettings
 

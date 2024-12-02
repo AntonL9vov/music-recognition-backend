@@ -40,15 +40,19 @@
 #     # url = get_streaming_url(filezmeta['tracks'][0]['streaming'])
 #     # print('url', url)
 #     return similarTracks
+
 from fastapi import FastAPI
+from pylast import LastFMNetwork
 from starlette.middleware.cors import CORSMiddleware
 
 from app.core.config import get_app_settings
 from app.api.routes.api import router as api_router
+from app.core.lastfm import get_last_fm_network
+
+settings = get_app_settings()
+
 
 def get_application() -> FastAPI:
-    settings = get_app_settings()
-
     settings.configure_logging()
 
     application = FastAPI(**settings.fastapi_kwargs)
@@ -62,7 +66,10 @@ def get_application() -> FastAPI:
     )
 
     application.include_router(api_router, prefix=settings.api_prefix)
-    
+
     return application
 
+
 app = get_application()
+
+lastfm_network = get_last_fm_network(settings)
